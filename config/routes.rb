@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :admins do
+  resources :products
   resources :categories
+end
   get 'home/index'
   root 'home#index'
 
