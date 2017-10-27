@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admins do
-  resources :products
-  resources :categories
-end
+    resources :products
+    resources :categories
+  end
+
+  resources :products, only: [:show, :index]
+  resources :categories, only: [:show, :index]
   get 'home/index'
   root 'home#index'
 
