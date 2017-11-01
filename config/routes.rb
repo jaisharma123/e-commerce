@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :order_items
+  resources :orders
+  get 'carts/show'
+
+
+
   namespace :admins do
     resources :products
     resources :categories
@@ -9,6 +15,11 @@ Rails.application.routes.draw do
   resources :categories, only: [:show, :index]
   get 'home/index'
   root 'home#index'
+
+  resource :cart, only: [:show] do
+  put 'add/product_id', to: 'carts#add', as: :add_to
+  put 'remove/:product_id', to: 'carts#remove', as: :remove_from
+end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
