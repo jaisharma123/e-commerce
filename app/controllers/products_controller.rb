@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
 
   def index
-    @products = Product.all
+    @q = Product.ransack(params[:q])
+     @products = @q.result(distinct: true)
   end
 
   def show
