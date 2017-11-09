@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :order_items
   validates :name,:price,:size, presence: true
   belongs_to :category, optional: true
   has_many :images, as: :imageable

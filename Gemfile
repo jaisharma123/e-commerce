@@ -57,3 +57,4 @@ gem "cocoon"
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'cancancan', '~> 2.0'
+gem 'ransack'

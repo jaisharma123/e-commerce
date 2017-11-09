@@ -62,7 +62,7 @@ class OrderItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+     # Use callbacks to share common setup or constraints between actions.
     def set_order_item
       @order_item = OrderItem.find(params[:id])
     end

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
+  ROLES = %w[admin  user].freeze
 
   def full_name
     "#{self.first_name} #{self.last_name}"
