@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+   extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :order_items
   validates :name,:price,:size, presence: true
   belongs_to :category, optional: true

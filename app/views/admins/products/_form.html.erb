@@ -15,6 +15,15 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :user_id, value: current_user.id if user_signed_in? %>
+  <div class="form-group">
+    <%= f.label :category, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :category_id, options_for_select(Category.all.collect {|p| [ p.name, p.id ] },(f.object.try(:category_id))),{prompt: 'Select Category for Product'},{ :class => 'form-control'} %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

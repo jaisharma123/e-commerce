@@ -7,12 +7,13 @@ class ProductsController < ApplicationController
   end
 
   def show
+  #    @product = Product.friendly.find(params[:id])
   end
 
   private
 
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 
 end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
-  ROLES = %w[admin  user].freeze
+  ROLES = %w[admin guest].freeze
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -14,8 +14,8 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
-  def user?
-    self.role == "user"
+  def guest?
+    self.role == "guest"
   end
 
   def login=(login)
