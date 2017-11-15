@@ -55,8 +55,8 @@
             <% else %>
               <li><%= link_to "Sign In", new_user_session_path %></li>
             <% end %>
-            <li><%= link_to "Products", "products"  %></li>
-            <li><%= link_to "Categories", "categories"  %></li>
+            <li><%= link_to "Products", products_path  %></li>
+            <li><%= link_to "Categories", categories_path  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
           </ul>
         </div>
@@ -74,8 +74,8 @@
             <h3>Sidebar</h3>
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Products", "products"  %></li>
-              <li><%= link_to "Categories", "categories"  %></li>
+              <li><%= link_to "Products", admins_products_path  %></li>
+              <li><%= link_to "Categories", admins_categories_path  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
           </div><!--/.well -->
