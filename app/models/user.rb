@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and
-  devise :database_authenticatable, :registerable,
+  # :lockable, :timeoutable and
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2], :authentication_keys => [:login]
 
   after_create :sent_registration_email

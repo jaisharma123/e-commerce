@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'home#index'
 
   devise_for :users, controllers: {
         sessions: 'users/sessions',
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
       }
   resources :order_items
   resources :orders
+
   get 'carts/show'
+
 
 
 
@@ -21,7 +24,9 @@ Rails.application.routes.draw do
   resources :products, only: [:show, :index]
   resources :categories, only: [:show, :index]
   get 'home/index'
-  root 'home#index'
+  get '/contact' => "home#contact"
+  get 'home/contact'
+  post '/create_contact' => "home#create_contact"
 
   resource :cart, only: [:show] do
   put 'add/product_id', to: 'carts#add', as: :add_to
