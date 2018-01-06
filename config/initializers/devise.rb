@@ -254,7 +254,6 @@ Devise.setup do |config|
    require "omniauth-google-oauth2"
     config.omniauth :google_oauth2,'409634039382-r18hb87g2g5i6nolgliko0c1ft8ua6ko.apps.googleusercontent.com', 'HUhzDtX1vD1EvN6XubfLO9p8', callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
 
-    config.omniauth :google_oauth2,'409634039382-r18hb87g2g5i6nolgliko0c1ft8ua6ko.apps.googleusercontent.com', 'HUhzDtX1vD1EvN6XubfLO9p8', callback_url: "https://fabwear.herokuapp.com"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
