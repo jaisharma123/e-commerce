@@ -1,35 +1,85 @@
-<%- model_class = Product -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:size) %></th>
-      <th><%= model_class.human_attribute_name(:color) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.id, product_path(product) %></td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.price %></td>
-        <td><%= product.size %></td>
-        <td><%= product.color %></td>
-        <td><%=l product.created_at %></td>
-        <td>
+  <%= render "layouts/site_header"%>
+  <%- model_class = Product -%>
+    <!-- <div class="page-header">
+      <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:id) %></th>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:description) %></th>
+          <th><%= model_class.human_attribute_name(:price) %></th>
+          <th><%= model_class.human_attribute_name(:size) %></th>
+          <th><%= model_class.human_attribute_name(:color) %></th>
+          <th><%= model_class.human_attribute_name(:created_at) %></th>
 
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tr>
+      </thead>
+      <tbody> -->
+      <div class="container-fluid" style="margin-bottom: 20px">
+      <div class="col-md-3"></div>
+      <div class="col-md-9">
+        <% @products.each do |product| %>
+          <!-- <tr>
+            <td><%= link_to product.id, product_path(product) %></td>
+            <td><%= product.name %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td><%= product.size %></td>
+            <td><%= product.color %></td>
+            <td><%=l product.created_at %></td>
+            <td>
+
+            </td>
+          </tr> -->
+
+          <%#= image_tag product.images.first if product.images.present? %>
+
+          <div id="horizontalTab">
+      <ul class="resp-tabs-list">
+        <div>
+          <div class="col-md-4 product-men">
+            <%= link_to product_path(product) do %>
+              <div class="men-pro-item simpleCart_shelfItem">
+                <div class="men-thumb-item">
+                  <%= image_tag product.images.first.image.url if product.images.present? %>
+
+                <%#= link_to image_tag "m1.jpg", class: "pro-image-front" %>
+                <%#= image_tag "m1.jpg", class: "pro-image-back" %>
+                <div class="men-cart-pro">
+                  <div class="inner-men-cart-pro">
+
+                  </div>
+                </div>
+
+              </div>
+            <% end %>
+              <div class="item-info-product ">
+                <h4><%=link_to product.name, product_path(product) %></h4>
+                <div class="info-product-price">
+                  <span class="item_price">₹<%= product.price %></span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </ul>
+    </div>
+
+        <% end %>
+
+        </div>
+      </div>
+
+
+
+  <%= yield %>
+   <%= render "layouts/site_footer"%>
+
+
+     <!--  </tbody>
+    </table> -->
 
