@@ -1,0 +1,136 @@
+<!-- <h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile_no %><br />
+    <%= f.text_field :mobile_no, autofocus: true %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+ -->
+
+
+
+
+
+
+
+     <!-- Modal2 --><div class="modal fade" id="myModal23" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body modal-body-sub_agile">
+        <div class="col-md-8 modal_body_left modal_body_left1">
+      <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
+     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="styled-input agile-styled-input-top">
+           <%= f.text_field :first_name, autofocus: true %>
+          <label>First Name</label>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <%= f.text_field :last_name, autofocus: true %>
+          <label>Last Name</label>
+          <span></span>
+        </div>
+        <div class="styled-input">
+           <%= f.text_field :mobile_no, autofocus: true %>
+          <label>Mobile No</label>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <%= f.email_field :email, autofocus: true %>
+          <label>Email</label>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "off" %>
+          <label>Password</label>
+          <span></span>
+        </div>
+        <div class="styled-input">
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <label>Confirm Password</label>
+          <span></span>
+        </div>
+        <%= f.submit "Sign up" %>
+      <% end %>
+      <%= render "users/shared/links"%>
+              <div class="clearfix"></div>
+              <p><a href="#">Or Login with</a></p>
+
+    <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+
+    <li>
+      <a href="#" class="facebook">
+      <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+      <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>   </a>
+    </li>
+
+
+    <li>
+      <a href="#" class="google">
+      <div class="front"><i class="fa fa-google" aria-hidden="true"></i></div>
+      <div class="back"><i class="fa fa-google" aria-hidden="true"></i></div>
+      </a>
+    </li>
+
+  </ul>
+
+
+
+            </div>
+            <!-- <div class="col-md-4 modal_body_right modal_body_right1">
+              <img src="images/log_pic.jpg" alt=" "/>
+            </div> -->
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <!-- //Modal content-->
+   </div>
+</div>
+
+    <!-- //Modal2 -->
+
+

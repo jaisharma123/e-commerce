@@ -1,8 +1,14 @@
 class Users::PasswordsController < Devise::PasswordsController
+
+  respond_to :js
+
   # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  def new
+    super
+    respond_to do |format|
+      format.js {'users/passwords/new'}
+    end
+  end
 
   # POST /resource/password
   # def create

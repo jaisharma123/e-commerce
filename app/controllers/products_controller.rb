@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show]
+  layout 'site'
 
   def index
     @q = Product.ransack(params[:q])
@@ -7,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-  #    @product = Product.friendly.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   private

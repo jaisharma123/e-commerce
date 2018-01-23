@@ -20,6 +20,7 @@
   <% @product.images.each do |image|%>
     <div class="col-md-3">
       <%= image_tag image.image_url, class: "img-responsive" %>
+
     </div>
   <% end if @product.images.present? %>
 </div>
