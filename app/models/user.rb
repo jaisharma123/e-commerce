@@ -37,9 +37,9 @@ class User < ApplicationRecord
     end
   end
 
-  # def sent_registration_email
-  #   ConfirmationMailer.registration_confirmation(self).deliver_now
-  # end
+  def sent_registration_email
+    ConfirmationMailer.registration_confirmation(self).deliver_now
+  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
