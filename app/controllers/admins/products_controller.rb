@@ -6,6 +6,7 @@ class Admins::ProductsController < ApplicationController
   # GET /products.json
   def index
     #@products = Product.all
+    @categories = Category.all
     @q = Product.ransack(params[:q])
      @products = @q.result(distinct: true)
   end
@@ -63,6 +64,7 @@ class Admins::ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

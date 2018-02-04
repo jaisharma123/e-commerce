@@ -3,5 +3,5 @@ class Category < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name,:description, presence: true, uniqueness: true
-  has_many :products
+  has_and_belongs_to_many :products
 end

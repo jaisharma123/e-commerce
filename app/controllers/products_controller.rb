@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   layout 'site'
 
   def index
+    @categories = Category.all
     @q = Product.ransack(params[:q])
      @products = @q.result(distinct: true)
   end
@@ -10,6 +11,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.friendly.find(params[:id])
   end
+
+
 
   private
 
