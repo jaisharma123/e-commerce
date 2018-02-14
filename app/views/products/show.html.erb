@@ -22,7 +22,7 @@
             <li data-thumb="<%= image.image_url %>">
               <div class="thumb-image">
                  <div class="row">
-                    <%= image_tag image.image_url, class: "img-responsive" ,'data-imagezoom' =>true%>
+                    <%= image_tag image.image_url,'data-imagezoom' =>true%>
                   </div>
                </div>
              </li >
@@ -118,5 +118,4 @@
             <div class="container-fluid" style="margin-bottom: 20px">
             <%= render "layouts/site_related_products"%>
             </div>
-<%=yield%>
- <%= render "layouts/site_footer"%>
+

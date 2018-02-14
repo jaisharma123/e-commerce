@@ -15,13 +15,17 @@ Rails.application.routes.draw do
 
 
 
-
-  namespace :admins do
+    namespace :admins do
     resources :products
     resources :categories
   end
 
-  resources :products, only: [:show, :index]
+
+  resources :products, only: [:show, :index] do
+    collection do
+      get :filtered_products
+    end
+  end
   resources :categories, only: [:show, :index]
   get 'home/index'
   get '/contact' => "home#contact"
