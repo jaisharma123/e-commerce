@@ -31,6 +31,11 @@ class ProductsController < ApplicationController
 
     end
 
+    def new_arrivals
+      @new_arrivals = Product.last(10)
+      render '_site_new_arrivals'
+    end
+
 
     private
 
