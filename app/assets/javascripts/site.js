@@ -8,7 +8,6 @@
 //= require site/jquery.easing.min
 //= require site/jquery.flexslider
 //= require site/jquery.waypoints.min
-//= require site/minicart.min
 //= require site/modernizr.custom
 //= require site/move-top
 //= require site/responsiveslides.min

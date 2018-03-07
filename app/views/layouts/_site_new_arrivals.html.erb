@@ -6,8 +6,7 @@
         <div class="resp-tabs-container">
           <!--/tab_one-->
           <div class="tab1">
-          <%@new_arrivals = Product.last(8)%>
-            <%@new_arrivals.each do |product|%>
+            <%new_arrivals.each do |product|%>
             <div class="col-md-3 product-men">
               <div class="men-pro-item simpleCart_shelfItem">
                 <div class="men-thumb-item">

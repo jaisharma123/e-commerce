@@ -14,6 +14,7 @@ class HomeController < ApplicationController
   def create_contact
     @contact = Contact.new(contact_params)
     if @contact.save
+      # ConfirmationMailer.registration_confirmation(@contact).deliver_now
       redirect_to root_path
     end
   end

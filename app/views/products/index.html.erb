@@ -1,13 +1,24 @@
 <%- model_class = Product -%>
 
 <div class="container-fluid" style="margin-bottom: 20px">
-  <div class="col-md-3" >
+  <div class="col-md-3"  >
+ <center>
+   <h2><b>Filters</b></h2>
+ </center>
+  <hr>
+  <h4>Categories</h4> <br/>
+
     <% Category.all.each do |category|%>
     <label>
       <input type="checkbox" value="<%=category.id%>" class="category-filter-check", class="the_slider"> <%=category.name%>
 
     </label><br>
     <%end%>
+  <br><h4>Size</h4>
+
+    <% size_array.each do |size| %>
+      <input type="checkbox" value="<%= size %>" name="XXS" class="size-filter-check"><b><span> <%= size %> </span></b><br>
+    <% end %>
 
   </div>
 
@@ -35,8 +46,26 @@
     <!-- </ul> -->
     <!-- </div> -->
     <% end %>
+
   </div>
+  <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <!-- <li>
+      <a  aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li> -->
+
+    <!-- <li>
+      <a  aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li> -->
+  </ul>
+    <center><%= paginate @products %></center>
+</nav>
 </div>
+
 <script type="text/javascript">
   // $(document).ready(function() {
   //   $('.category-filter-check').change(function() {
@@ -54,15 +83,33 @@
 
 
   $(".category-filter-check").click(function(event){
-    var categoryId = $(" input:checkbox:checked").map(function(){
+    var categoryId = $(".category-filter-check:checkbox:checked").map(function(){
       return $(this).val();
     }).get();
-    console.log(categoryId);
+    var productSize = $(" .size-filter-check:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get();
     $.ajax({
       url: '/products/filtered_products',
       method: 'GET',
-      data: { category_id: categoryId }
+      data: { category_id: categoryId, size:  productSize}
 
     });
   });
+
+$(".size-filter-check").click(function(event){
+    var categoryId = $(".category-filter-check:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get();
+    var productSize = $(" .size-filter-check:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get();
+    $.ajax({
+      url: '/products/filtered_products',
+      method: 'GET',
+      data: { category_id: categoryId, size: productSize }
+
+    });
+  });
+
 </script>

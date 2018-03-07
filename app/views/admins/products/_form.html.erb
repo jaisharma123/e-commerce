@@ -48,7 +48,7 @@
   <div class="form-group">
     <%= f.label :size, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :size, :class => 'form-control' %>
+      <%= f.select(:size, ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'], {prompt: 'Select Size of Product'}, {:class => 'select form-control'}) %>
     </div>
     <%=f.error_span(:size) %>
   </div>

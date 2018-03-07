@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get '/contact' => "home#contact"
   get 'home/contact'
+  get 'home/admin_page'
   post '/create_contact' => "home#create_contact"
 
   resource :cart, only: [:show] do

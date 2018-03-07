@@ -8,7 +8,7 @@ class Admins::ProductsController < ApplicationController
     #@products = Product.all
     @categories = Category.all
     @q = Product.ransack(params[:q])
-     @products = @q.result(distinct: true)
+     @products = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   # GET /products/1

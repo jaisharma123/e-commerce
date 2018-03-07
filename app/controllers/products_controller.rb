@@ -4,13 +4,14 @@ class ProductsController < ApplicationController
 
   def index
     category = Category.where('categories in (?)', params[:categories]);
+    # product = Product.where ('products in (?)', params[:products]);
     respond_to do |format|
       format.js
       format.html
     end
     @categories = Category.all
     @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).page(params[:page]).per(9)
   end
 
   def show
@@ -21,20 +22,18 @@ class ProductsController < ApplicationController
       # @category = Category.find(params[:category_id])
       # @products = @category.products
 
-
-      if params[:category_id].present?
-        @categories = Category.where('id IN (?)', params[:category_id])
+      if params[:category_id].present? && params[:size].present?
+        @products = Product.where(category_id: params[:category_id], size: params[:size] )
+      elsif params[:category_id].present?
+        @products =  Product.where(category_id: params[:category_id])
+      elsif params[:size].present?
+        @products = Product.where(size: params[:size] )
       else
-        @categories = Category.all
+       @products = Product.all
       end
-      @products = @categories.map {|category| category.products}.flatten
-
     end
 
-    def new_arrivals
-      @new_arrivals = Product.last(10)
-      render '_site_new_arrivals'
-    end
+
 
 
     private

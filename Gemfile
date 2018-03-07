@@ -70,5 +70,6 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
+gem 'kaminari'
 
 
