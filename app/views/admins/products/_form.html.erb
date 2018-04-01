@@ -15,7 +15,6 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :user_id, value: current_user.id if user_signed_in? %>
   <div class="form-group">
     <%= f.label :category, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -58,6 +57,15 @@
       <%= f.text_field :color, :class => 'form-control' %>
     </div>
     <%=f.error_span(:color) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :active, :class => 'control-label col-lg-2' %>
+    <div>
+
+    <%= f.check_box :active %>
+    </div>
+    <%=f.error_span(:active) %>
   </div>
 
   <div id="images">

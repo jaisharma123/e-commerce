@@ -12,10 +12,13 @@ class ProductsController < ApplicationController
     @categories = Category.all
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page]).per(9)
+
+    @order_item = current_order.order_items.new
   end
 
   def show
     @product = Product.friendly.find(params[:id])
+    @similar_products = Product.similar_products(@product)
   end
 
   def filtered_products

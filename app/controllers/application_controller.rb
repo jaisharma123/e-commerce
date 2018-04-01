@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
     before_filter :set_search
+    helper_method :current_order
 
     rescue_from CanCan::AccessDenied do |exception|
       respond_to do |format|
@@ -14,5 +15,14 @@ class ApplicationController < ActionController::Base
     def set_search
         @q=Product.ransack(params[:q])
     end
+
+    def current_order
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      Order.new
+    end
+  end
+
 end
 

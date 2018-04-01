@@ -3,6 +3,7 @@
   *= require site/bootstrap
   *= require site/easy-responsive-tabs
   *= require site/flexslider
+  *= require site/font-awesome
   *= require site/jquery-ui
   *= require site/style
   *= require site/team

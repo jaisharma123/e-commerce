@@ -64,7 +64,7 @@ gem 'twitter-bootstrap-rails'
 gem "cocoon"
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
-gem 'cancancan', '~> 2.0'
+gem 'cancancan'
 gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
 gem 'omniauth'

@@ -1,35 +1,33 @@
+
 <!-- header -->
 <div class="header" id="home">
   <div class="container">
     <ul>
 
       <% if user_signed_in? %>
-      <!-- <li><%= link_to current_user.full_name, "" %></li> -->
       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       <% else %>
       <li><%= link_to "Sign In", new_user_session_path, remote: true %><i class="fa fa-unlock-alt" aria-hidden="true"></i></li>
       <li><%= link_to "Sign Up", new_user_registration_path, remote: true  %><i class="fa fa-pencil-square-o" aria-hidden="true"></i></li>
-      <span id="project"></span>
-      <span id="project2"></span>
+
       <% end %>
 
-      <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
+      <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:fabwear10@gmail.com">fabwear10@gmail.com</a></li>
       <li><i  class="fa fa-phone" aria-hidden="true"></i> <a href="#">0123456789</a></li>
 
       <% if current_user.try(:admin?) %>
       <li><%= link_to 'Hello..!! Admin', home_admin_page_path %></li>
 
       <%elsif user_signed_in?%>
-        <li><%="Signed in as: #{current_user.full_name}" %></li>
+      <li><%="Signed in as: #{current_user.email}" %></li>
 
       <%end%>
-        <!-- <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li> -->
-          </ul>
-<!--    <div id="project"></div>
-  <div id="project2"></div> -->
-</div>
+    </ul>
+
+  </div>
 </div>
 <!-- //header -->
+
 <!-- header-bot -->
 <div class="header-bot">
   <div class="header-bot_inner_wthreeinfo_header_mid">
@@ -45,6 +43,7 @@
     <div class="col-md-4 logo_agile">
       <h1><a href="\"><span>F</span>ab Wear <i class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a></h1>
     </div>
+
     <!-- header-bot -->
     <div class="col-md-4 agileits-social top_content">
       <ul class="social-nav model-3d-0 footer-social w3_agile_social">
@@ -69,6 +68,7 @@
   </div>
 </div>
 <!-- //header-bot -->
+
 <!-- banner -->
 <div class="ban-top">
   <div class="container">
@@ -108,10 +108,7 @@
     </div>
     <div class="top_nav_right">
       <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-        <form action="#" method="post" class="last">
-          <input type="hidden" name="cmd" value="_cart">
-          <input type="hidden" name="display" value="1">
-          <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+          <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"><%= render 'layouts/cart_text' %></i></button>
         </form>
 
       </div>
@@ -119,6 +116,7 @@
     <div class="clearfix"></div>
   </div>
 </div>
+
 <!-- //banner-top -->
 
 

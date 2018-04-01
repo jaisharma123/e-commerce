@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128140046) do
+ActiveRecord::Schema.define(version: 20180329151750) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -52,12 +52,14 @@ ActiveRecord::Schema.define(version: 20171128140046) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
+    t.integer  "order_id"
     t.decimal  "unit_price"
     t.integer  "quantity"
     t.decimal  "total_price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "order_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "order_statuses", force: :cascade do |t|
@@ -69,10 +71,12 @@ ActiveRecord::Schema.define(version: 20171128140046) do
   create_table "orders", force: :cascade do |t|
     t.decimal  "subtotal"
     t.decimal  "tax"
-    t.decimal  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.decimal  "shipping"
+    t.decimal  "total"
+    t.integer  "order_status_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["order_status_id"], name: "index_orders_on_order_status_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -84,8 +88,8 @@ ActiveRecord::Schema.define(version: 20171128140046) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
-    t.integer  "user_id"
     t.string   "slug"
+    t.boolean  "active"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
@@ -106,12 +110,12 @@ ActiveRecord::Schema.define(version: 20171128140046) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "role"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "mobile_no"
+    t.string   "role"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

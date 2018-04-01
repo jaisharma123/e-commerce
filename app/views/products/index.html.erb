@@ -1,85 +1,62 @@
+<div id="project"></div>
 <%- model_class = Product -%>
 
 <div class="container-fluid" style="margin-bottom: 20px">
   <div class="col-md-3"  >
- <center>
-   <h2><b>Filters</b></h2>
- </center>
-  <hr>
-  <h4>Categories</h4> <br/>
+   <center>
+     <h2><b>Filters</b></h2>
+   </center>
+   <hr>
+   <h4>Categories</h4> <br/>
 
-    <% Category.all.each do |category|%>
-    <label>
-      <input type="checkbox" value="<%=category.id%>" class="category-filter-check", class="the_slider"> <%=category.name%>
+   <% Category.all.each do |category|%>
+   <label>
+    <input type="checkbox" value="<%=category.id%>" class="category-filter-check", class="the_slider"> <%=category.name%>
 
-    </label><br>
-    <%end%>
+  </label><br>
+  <%end%>
   <br><h4>Size</h4>
 
-    <% size_array.each do |size| %>
-      <input type="checkbox" value="<%= size %>" name="XXS" class="size-filter-check"><b><span> <%= size %> </span></b><br>
-    <% end %>
+  <% size_array.each do |size| %>
+  <input type="checkbox" value="<%= size %>" name="XXS" class="size-filter-check"><b><span> <%= size %> </span></b><br>
+  <% end %>
 
-  </div>
+</div>
 
-  <div class="col-md-9" id="categories">
-    <% @products.each do |product| %>
-    <!-- <div id="horizontalTab"> -->
-    <!--  <ul class="resp-tabs-list"> -->
-    <!-- <div> -->
-    <div class="col-md-4 product-men">
-      <%= link_to product_path(product) do %>
-      <div class="men-pro-item simpleCart_shelfItem">
-        <div class="men-thumb-item">
-          <%= image_tag product.images.first.image.url if product.images.present? %>
-        </div>
-        <% end %>
-        <div class="item-info-product ">
-          <h4><%=link_to product.name, product_path(product) %></h4>
-          <div class="info-product-price">
-            <span class="item_price">₹<%= product.price %></span>
-          </div>
+<div class="col-md-9" id="categories">
+  <% @products.each do |product| %>
+
+  <div class="col-md-4 product-men">
+    <%= link_to product_path(product) do %>
+    <div class="men-pro-item simpleCart_shelfItem">
+      <div class="men-thumb-item">
+        <%= image_tag product.images.first.image.url if product.images.present? %>
+      </div>
+      <% end %>
+      <div class="item-info-product ">
+        <h4><%=link_to product.name, product_path(product) %></h4>
+        <div class="info-product-price">
+          <span class="item_price">₹<%= product.price %></span>
         </div>
       </div>
     </div>
-    <!-- </div> -->
-    <!-- </ul> -->
-    <!-- </div> -->
-    <% end %>
-
   </div>
-  <nav aria-label="Page navigation">
-  <ul class="pagination">
-    <!-- <li>
-      <a  aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li> -->
+  <!-- </div> -->
+  <!-- </ul> -->
+  <!-- </div> -->
+  <% end %>
 
-    <!-- <li>
-      <a  aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li> -->
+</div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+
   </ul>
-    <center><%= paginate @products %></center>
+  <center><%= paginate @products %></center>
 </nav>
 </div>
 
 <script type="text/javascript">
-  // $(document).ready(function() {
-  //   $('.category-filter-check').change(function() {
-  //     if ($(this).is(':checked')) {
-  //       alert($(this).data('value'));
-  //       var categoryId = $(this).data('value');
-  //       $.ajax({
-  //         url: '/products/filtered_products',
-  //         method: 'GET',
-  //         data: { category_id: categoryId }
-  //       });
-  //     }
-  //   });
-  // });
+
 
 
   $(".category-filter-check").click(function(event){
@@ -97,7 +74,7 @@
     });
   });
 
-$(".size-filter-check").click(function(event){
+  $(".size-filter-check").click(function(event){
     var categoryId = $(".category-filter-check:checkbox:checked").map(function(){
       return $(this).val();
     }).get();

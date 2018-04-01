@@ -3,9 +3,13 @@
 one:
   subtotal: 9.99
   tax: 9.99
+  shipping: 9.99
   total: 9.99
+  order_status: one
 
 two:
   subtotal: 9.99
   tax: 9.99
+  shipping: 9.99
   total: 9.99
+  order_status: two
