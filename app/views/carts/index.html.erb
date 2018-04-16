@@ -1,0 +1,53 @@
+
+<% if @order.present? %>
+
+
+
+<div style="margin-top:10%;"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= flash[:notice] %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Your cart</h3>
+        </div>
+        <div class="panel-body">
+          <% @order.order_items.each do |order_item| %>
+            <div id="order_item_<%= order_item %>">
+              <%= form_for :order_item, url: :update_item_quantity_orders, method: :patch do |f| %>
+                <%= f.hidden_field :order_item_id, value: order_item.id %>
+                <div class="row" style="margin-bottom: 5px;">
+                  <div class="col-md-4">
+                    <h4><%= order_item.item_name %></h4>
+                  </div>
+                  <div class="col-md-2">
+                    <h4><%= order_item.item_quantity %></h4>
+                  </div>
+                  <div class="col-md-2">
+                    <%= order_item.subtotal %><br>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.number_field :item_quantity, min: "1", max: "5", value: order_item.item_quantity %>
+                    <%= f.submit "Update Qty", class: "btn btn-primary" %>
+                    <%= link_to "Remove Item", delete_order_item_orders_path(order_item_id: order_item.id), method: :delete, data: {confirm: "Are you sure to remove this item from your cart?"}, class: "btn btn-danger" %>
+                  </div>
+                </div>
+                <hr>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="well">
+            <h3 class="text-center">Total: <%= @order.total %></h3>
+            <%= link_to "Checkout", "", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+  <p class="text-center">
+    There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+  </p>
+  <% end %>

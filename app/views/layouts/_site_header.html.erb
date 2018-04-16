@@ -106,13 +106,13 @@
         </div>
       </nav>
     </div>
+        <%= link_to carts_path, class: 'w3view-cart' do %>
     <div class="top_nav_right">
       <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-          <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"><%= render 'layouts/cart_text' %></i></button>
-        </form>
-
+        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
       </div>
     </div>
+      <% end %>
     <div class="clearfix"></div>
   </div>
 </div>

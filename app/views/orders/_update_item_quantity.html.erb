@@ -1,0 +1,20 @@
+<%= form_for :order_item, url: :update_item_quantity_orders, method: :patch do |f| %>
+  <%= f.hidden_field :order_item_id, value: @order_item.id %>
+  <div class="row" style="margin-bottom: 5px;">
+    <div class="col-md-4">
+      <h4><%= @order_item.item_name %></h4>
+    </div>
+    <div class="col-md-2">
+      <h4><%= @order_item.item_quantity %></h4>
+    </div>
+    <div class="col-md-2">
+      <%= @order_item.item_price * @order_item.item_quantity %><br>
+    </div>
+    <div class="col-md-4">
+      <%= f.number_field :item_quantity, min: "1", max: "5", value: @order_item.item_quantity %>
+      <%= f.submit "Update Qty", class: "btn btn-primary" %>
+      <%= link_to "Remove Item", "", class: "btn btn-danger" %>
+    </div>
+  </div>
+  <hr>
+<% end %>

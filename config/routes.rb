@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'order_items/create'
-
-  get 'order_items/update'
-
-  get 'order_items/destroy'
 
   root 'home#index'
 
@@ -14,11 +9,6 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
     omniauth_callbacks:  'users/omniauth_callbacks'
   }
-
-  get 'carts/show'
-  resource :cart, only: [:show]
-  resources :order_items, only: [:create, :update, :destroy]
-
 
   namespace :admins do
     resources :products
@@ -38,10 +28,15 @@ Rails.application.routes.draw do
   get 'home/admin_page'
   post '/create_contact' => "home#create_contact"
 
-  # resource :cart, only: [:show] do
-  #   put 'add/product_id', to: 'carts#add', as: :add_to
-  #   put 'remove/:product_id', to: 'carts#remove', as: :remove_from
-  # end
+  resources :orders do
+    collection do
+      post :create_order
+      patch :update_item_quantity
+      delete :delete_order_item
+    end
+  end
+
+  resources :carts, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

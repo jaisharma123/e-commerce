@@ -1,133 +1,98 @@
-<%- model_class = Product -%>
 <div id="project"></div>
-<%#= render "layouts/site_header"%>
 
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+      <nav class="breadcrumb">
+        <%= link_to root_path, class: "breadcrumb-item"  do %>
+        <i class="fa fa-home"></i>
+        <% end %>
+        <%= link_to "Product",products_path,class:"breadcrumb-item"%>
+        <span class="breadcrumb-item active"><%= @product.name %></span>
+      </nav>
 
 <dl class="dl-horizontal">
-
-
-
-
-
   <div class="banner-bootom-w3-agileits">
-  <div class="container">
-       <div class="col-md-4 single-right-left ">
-      <div class="grid images_3_of_2">
-        <div class="flexslider">
+    <div class="container">
 
-          <ul class="slides">
-           <% @product.images.each do |image|%>
-            <li data-thumb="<%= image.image_url %>">
+      <div class="col-md-4 single-right-left ">
+        <div class="grid images_3_of_2">
+          <div class="flexslider">
+
+            <ul class="slides">
+             <% @product.images.each do |image|%>
+             <li data-thumb="<%= image.image_url %>">
               <div class="thumb-image">
-                 <div class="row">
-                    <%= image_tag image.image_url,'data-imagezoom' =>true%>
-                  </div>
-               </div>
-             </li >
-            <% end if @product.images.present? %>
-          </ul>
-
-          <div class="clearfix"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 single-right-left simpleCart_shelfItem">
-          <h3><dd><%= @product.name %></dd></h3>
-
-          <p><span class="item_price">₹<%= @product.price %></span> </p>
-          <p><span class="item_price"></span><%= model_class.human_attribute_name(:size) %>:<%= @product.size %> </p>
-          <p><span class="item_price"><%= model_class.human_attribute_name(:color) %>:<%= @product.color %></span> </p>
-
-          <div class="color-quality">
-            <div class="color-quality-right">
-              <h5>Quantity :</h5>
-              <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-                <option value="null">1 Qty</option>
-                <option value="null">5 Qty</option>
-                <option value="null">6 Qty</option>
-                <option value="null">7 Qty</option>
-                <option value="null">10 Qty</option>
-              </select>
-            </div>
-          </div>
-
-         <%= form_for :order_item, remote: true do |f| %>
-      <h4 class="text-right">Unit Price: <span style="color: green"><%= @product.price %></span></h4>
-        <div class="input-group">
-          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
-          <div class="input-group-btn">
-            <%= f.hidden_field :product_id, value: @product.id %>
-            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
-
-          <!-- <div class="occasion-cart">
-            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                              <form action="#" method="post">
-                                <fieldset>
-                                  <input type="hidden" name="cmd" value="_cart">
-                                  <input type="hidden" name="add" value="1">
-                                  <input type="hidden" name="business" value=" ">
-                                  <input type="hidden" name="item_name" value="Wing Sneakers">
-                                  <input type="hidden" name="amount" value="650.00">
-                                  <input type="hidden" name="discount_amount" value="1.00">
-                                  <input type="hidden" name="currency_code" value="USD">
-                                  <input type="hidden" name="return" value=" ">
-                                  <input type="hidden" name="cancel_return" value=" ">
-                                  <input type="submit" name="submit" value="Add to cart" class="button">
-                                </fieldset>
-                              </form>
-                            </div>
-
-          </div> -->
-
-
-          </div>
-        <div class="clearfix"> </div>
-        <!-- /new_arrivals -->
-  <div class="responsive_tabs_agileits">
-        <div id="horizontalTab">
-            <ul class="resp-tabs-list">
-              <li>Description</li>
-
-            </ul>
-          <div class="resp-tabs-container">
-          <!--/tab_one-->
-             <div class="tab1">
-
-              <div class="single_page_agile_its_w3ls">
-
-                 <p><%= @product.description %></p>
-
+               <div class="row">
+                <%= image_tag image.image_url,'data-imagezoom' =>true%>
               </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              products_path, :class => 'btn btn-default'  %>
-            </dl>
+          </li >
+          <% end if @product.images.present? %>
+        </ul>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 single-right-left simpleCart_shelfItem">
+    <h3><dd><%= @product.name %></dd></h3>
+
+    <p><span class="item_price">₹<%= @product.price %></span> </p>
+    <p><span class="item_price"></span> Size : <%= @product.size %> </p>
+    <p><span class="item_price"> Color : <%= @product.color %></span> </p>
+    <div id="cart">
+      <%= form_for :order_item, url: :create_order_orders, method: :post do |f| %>
+      <div class="color-quality">
+        <div class="color-quality-right">
+          <h5>Quantity :</h5>
+          <%= f.hidden_field :item_name, value: @product.name %>
+          <%= f.hidden_field :item_price, value: @product.price %>
+          <%= f.select :item_quantity, options_for_select(['1', '2', '3', '4', '5']), {}, {class: "frm-field required sect"} %>
+        </div>
+      </div>
+      <div class="occasion-cart">
+        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+          <%= f.submit "Add to Cart", class: "button" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
 
 
+  </div>
+  <div class="clearfix"> </div>
+  <!-- /new_arrivals -->
+  <div class="responsive_tabs_agileits">
+    <div id="horizontalTab">
+      <ul class="resp-tabs-list">
+        <li>Description</li>
 
+      </ul>
+      <div class="resp-tabs-container">
+        <!--/tab_one-->
+        <div class="tab1">
+
+          <div class="single_page_agile_its_w3ls">
+
+           <p><%= @product.description %></p>
+
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <%= link_to t('.back', :default => t("helpers.links.back")),products_path, :class => 'btn btn-default'  %>
+</dl>
 
 <script src="js/jquery.flexslider.js"></script>
-            <script>
+<script>
             // Can also be used with $(document).ready()
-              $(window).load(function() {
-                $('.flexslider').flexslider({
+            $(window).load(function() {
+              $('.flexslider').flexslider({
                 animation: "slide",
                 controlNav: "thumbnails"
-                });
               });
-            </script>
-            <div class="container-fluid" style="margin-bottom: 20px">
+            });
+          </script>
+          <div class="container-fluid" style="margin-bottom: 20px">
             <%= render "layouts/site_related_products"%>
-            </div>
+          </div>
 
